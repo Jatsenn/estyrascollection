@@ -1,0 +1,45 @@
+<section class="featured section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-header__left">
+        <span class="label section-header__label">New Arrivals</span>
+        <h2 class="section-header__title">Just Dropped</h2>
+      </div>
+      <a routerLink="/shop" class="btn btn--ghost section-header__cta">
+        See All <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="grid-products">
+      @for (product of featured; track product.id) {
+        <article class="product-card">
+          <a [href]="product.shopeeUrl" target="_blank" rel="noopener" class="product-card__img-wrap">
+            <img [src]="product.image" [alt]="product.name" loading="lazy" />
+            <div class="product-card__img-placeholder">
+              <i class="fas fa-tshirt"></i>
+            </div>
+            <span class="product-card__badge">New</span>
+            @if (!product.available) {
+              <span class="product-card__sold-out">Sold Out</span>
+            }
+            <div class="product-card__overlay">
+              <div class="product-card__overlay-inner">
+                <span>Shop on Shopee</span>
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <div>
+              <p class="product-card__category label">{{ product.category }}</p>
+              <p class="product-card__name">{{ product.name }}</p>
+            </div>
+            <p class="product-card__price">₱{{ product.price }}</p>
+          </div>
+        </article>
+      }
+    </div>
+
+  </div>
+</section>

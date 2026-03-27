@@ -1,0 +1,112 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition), box-shadow var(--transition);
+
+  &--scrolled {
+    border-color: var(--color-border);
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  &__logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--color-text);
+
+    span { font-weight: 400; }
+  }
+
+  &__links {
+    display: flex;
+    gap: var(--space-5);
+
+    a {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      transition: color var(--transition);
+
+      &:hover, &.active { color: var(--color-text); }
+    }
+  }
+
+  &__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+
+    span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--color-text);
+      transition: all var(--transition);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  &__theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    transition: all var(--transition);
+    background: transparent;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--color-text);
+      color: var(--color-text);
+    }
+
+    i { font-size: 0.85rem; }
+  }
+
+  @media (max-width: 767px) {
+    &__burger { display: flex; }
+
+    &__links {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: var(--color-bg);
+      flex-direction: column;
+      gap: 0;
+      border-bottom: 1px solid var(--color-border);
+
+      &--open { display: flex; }
+
+      a {
+        padding: var(--space-3) var(--space-4);
+        border-top: 1px solid var(--color-border);
+      }
+    }
+  }
+}

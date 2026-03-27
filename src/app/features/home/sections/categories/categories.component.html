@@ -1,0 +1,30 @@
+<section class="categories section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-header__left">
+        <span class="label section-header__label">Collections</span>
+        <h2 class="section-header__title">Shop by Category</h2>
+      </div>
+    </div>
+
+    <div class="categories__grid">
+      @for (cat of categories; track cat.slug) {
+        <a [routerLink]="['/shop']" [queryParams]="{category: cat.slug}" class="categories__item">
+          <div class="categories__img-wrap">
+            <div class="categories__bg"></div>
+            <i [class]="cat.icon"></i>
+            <div class="categories__hover-label">
+              <span class="label">Explore</span>
+            </div>
+          </div>
+          <div class="categories__meta">
+            <span class="categories__name label">{{ cat.label }}</span>
+            <i class="fas fa-arrow-right categories__arrow"></i>
+          </div>
+        </a>
+      }
+    </div>
+
+  </div>
+</section>

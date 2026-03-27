@@ -1,0 +1,87 @@
+.categories {
+  background: var(--color-bg);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-2);
+
+    @media (max-width: 1023px) { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 767px)  { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover .categories__img-wrap { border-color: var(--color-text); }
+    &:hover .categories__bg { transform: scaleY(1); }
+    &:hover i { color: var(--color-inverse-text); }
+    &:hover .categories__hover-label { opacity: 1; }
+    &:hover .categories__name { color: var(--color-text); }
+    &:hover .categories__arrow { opacity: 1; transform: translateX(4px); }
+  }
+
+  &__img-wrap {
+    position: relative;
+    aspect-ratio: 3/4;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color var(--transition);
+
+    i {
+      font-size: 2.5rem;
+      color: var(--color-surface-dark);
+      position: relative;
+      z-index: 1;
+      transition: color var(--transition);
+    }
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background: var(--color-accent);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 350ms ease;
+    z-index: 0;
+  }
+
+  &__hover-label {
+    position: absolute;
+    bottom: var(--space-2);
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--color-inverse-text);
+    opacity: 0;
+    transition: opacity var(--transition);
+    z-index: 2;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2px;
+  }
+
+  &__name {
+    color: var(--color-text-muted);
+    transition: color var(--transition);
+  }
+
+  &__arrow {
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+    opacity: 0;
+    transition: opacity var(--transition), transform var(--transition);
+  }
+}

@@ -1,0 +1,81 @@
+<main class="shop">
+
+  <div class="shop__header">
+    <div class="container">
+      <div class="shop__header-inner">
+        <div>
+          <span class="label shop__header-label">Estyras Collection</span>
+          <h1 class="shop__header-title">Shop</h1>
+        </div>
+        <p class="shop__header-sub">Curated pieces. Minimal style.<br>All available on Shopee.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="shop__toolbar">
+      <div class="shop__filters">
+        @for (cat of categories; track cat.id) {
+          <button
+            class="shop__filter-btn"
+            [class.active]="activeCategory() === cat.id"
+            (click)="setCategory(cat.id)">
+            {{ cat.label }}
+          </button>
+        }
+      </div>
+      <p class="shop__count label">{{ filtered().length }} items</p>
+    </div>
+
+    <div class="grid-products">
+      @for (product of filtered(); track product.id) {
+        <article class="product-card">
+          <div class="product-card__img-wrap" (click)="openShopee(product.shopeeUrl)">
+            <div class="product-card__img-placeholder">
+              <i class="fas fa-tshirt"></i>
+            </div>
+            <img [src]="product.image" [alt]="product.name" loading="lazy" />
+            @if (product.isNew) {
+              <span class="product-card__badge">New</span>
+            }
+            @if (!product.available) {
+              <span class="product-card__sold-out">Sold Out</span>
+            }
+            <div class="product-card__overlay">
+              <div class="product-card__overlay-inner">
+                <span>Shop on Shopee</span>
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+          <div class="product-card__info">
+            <div>
+              <p class="product-card__category label">{{ product.category }}</p>
+              <p class="product-card__name">{{ product.name }}</p>
+            </div>
+            <p class="product-card__price">₱{{ product.price }}</p>
+          </div>
+          <button
+            class="btn btn--primary product-card__cta"
+            (click)="openShopee(product.shopeeUrl)"
+            [disabled]="!product.available">
+            @if (product.available) {
+              <i class="fas fa-store"></i> Buy on Shopee
+            } @else {
+              Sold Out
+            }
+          </button>
+        </article>
+      }
+    </div>
+
+    @if (filtered().length === 0) {
+      <div class="shop__empty">
+        <i class="fas fa-box-open"></i>
+        <p>No items in this category yet.</p>
+      </div>
+    }
+
+  </div>
+</main>

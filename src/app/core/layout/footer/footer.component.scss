@@ -1,0 +1,68 @@
+.footer {
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+  padding-top: var(--space-8);
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: var(--space-8);
+    align-items: start;
+    padding-bottom: var(--space-8);
+
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+  }
+
+  &__logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    em { font-style: normal; font-weight: 400; }
+  }
+
+  &__brand p {
+    margin-top: var(--space-1);
+    font-size: 0.8rem;
+    color: #999;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+
+    a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #999;
+      transition: color var(--transition);
+      &:hover { color: var(--color-inverse-text); }
+    }
+  }
+
+  &__social a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #999;
+    transition: color var(--transition);
+    &:hover { color: var(--color-inverse-text); }
+  }
+
+  &__bottom {
+    border-top: 1px solid #222;
+    padding: var(--space-3) var(--space-4);
+
+    p {
+      font-size: 0.72rem;
+      color: #555;
+      text-align: center;
+    }
+  }
+}
